@@ -37,7 +37,7 @@
 import SelectOption from "../components/SelectOption";
 import SelectOptionMulti from "../components/SelectOptionMulti";
 import SelectOptionDropdown from "../components/SelectOptionDropdown";
-import Options from '../model/Options';
+import Options,{InputModes} from '../model/Options';
 
 export default {
     name: "Settings",
@@ -58,9 +58,9 @@ export default {
         },
         inputModeOptions() {
             return [
-                { value: "button", label: this.$t("buttons") },
-                { value: "keyboard", label: this.$t("piano") },
-                { value: "midi", label: 'MIDI' }
+                { value: InputModes.Button, label: this.$t("buttons") },
+                { value: InputModes.Keyboard, label: this.$t("piano") },
+                { value: InputModes.Midi, label: 'MIDI' }
             ];
         },
         clefOptions() {

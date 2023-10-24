@@ -1,7 +1,13 @@
 import * as Lockr from "lockr";
 
+export const InputModes = Object.freeze({
+  Button : Symbol("Button"),
+  Keyboard : Symbol("Keyboard"),
+  Midi : Symbol("Midi")
+})
+
 export default {
-  inputMode: "button",
+  inputMode: InputModes.Button,
   gameLength: 60,
   clef: ["treble"],
   difficulty: "easy",
@@ -30,3 +36,4 @@ export default {
     Lockr.set("options", this);
   }
 };
+

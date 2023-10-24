@@ -11,10 +11,10 @@
       <NoteDisplay :currentExercise="currentExercise" @play="playNote(currentExercise.value)" />
     </div>
     <div class="game-screen-section" id="game-screen-input">
-      <ButtonInput v-if="options.inputMode === 'button'" @noteInput="checkAnswer" />
-      <KeyboardInput v-if="options.inputMode === 'keyboard'" @noteInput="checkAnswer" />
-      <MidiInput v-if="options.inputMode === 'midi'" @noteInput="(value) => checkAnswer(value, true)" />
-      <MousetrapInput v-if="options.inputMode !== 'midi'" @noteInput="checkAnswer" />
+      <ButtonInput v-if="isButtonInputSelected()" @noteInput="checkAnswer" />
+      <KeyboardInput v-if="isKeyboardInputSelected()" @noteInput="checkAnswer" />
+      <MidiInput v-if="isMidiInputSelected()" @noteInput="(value) => checkAnswer(value, true)" />
+      <MousetrapInput v-if="!isMidiInputSelected()" @noteInput="checkAnswer" />
     </div>
   </div>
 </template>
@@ -28,10 +28,11 @@ import KeyboardInput from '../components/KeyboardInput';
 import MidiInput from '../components/MidiInput';
 import MousetrapInput from '../components/MousetrapInput';
 
-import Options from '../model/Options';
+import Options, { InputModes } from '../model/Options';
 import Statistics from '../model/Statistics';
 import Note, { Accidentals,Notes } from '../model/Note';
 import Exercise, { Clefs } from '../model/Exercise';
+
 
 import * as _ from 'lodash';
 
@@ -106,6 +107,18 @@ export default {
       //filter out all notes with accidentals that are disabled in the options
       let filteredRange = fullRange.filter(note => accidentalsThatCanOccur.includes(note.accidental))
       return filteredRange;
+    },
+    isButtonInputSelected()
+    {
+      return this.options.inputMode === InputModes.Button;
+    },
+    isKeyboardInputSelected()
+    {
+      return this.options.inputMode === InputModes.Keyboard;
+    },
+    isMidiInputSelected()
+    {
+      return this.options.inputMode === InputModes.Midi;
     },
 
     startGame() {

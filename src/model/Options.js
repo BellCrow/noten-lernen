@@ -8,11 +8,17 @@ export const InputModes = Object.freeze({
   Midi : ("InputModes.Midi")
 })
 
+export const Difficulties = Object.freeze({
+  Easy: ("Difficulties.Easy"),
+  Normal: ("Difficulties.Normal"),
+  Hard: ("Difficulties.Hard"),
+})
+
 export default {
   inputMode: InputModes.Button,
   gameLength: 60,
   clef: [Clefs.Treble],
-  difficulty: "easy",
+  difficulty: Difficulties.Easy,
   accidentals: [],
   sound: false,
   vibration: true,

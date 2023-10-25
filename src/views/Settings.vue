@@ -37,7 +37,7 @@
 import SelectOption from "../components/SelectOption";
 import SelectOptionMulti from "../components/SelectOptionMulti";
 import SelectOptionDropdown from "../components/SelectOptionDropdown";
-import Options,{InputModes} from '../model/Options';
+import Options,{InputModes, Difficulties} from '../model/Options';
 import { Clefs } from '../model/Exercise';
 
 export default {
@@ -75,9 +75,9 @@ export default {
         },
         difficultyOptions() {
             return [
-                { value: "easy", label: this.$t("easy") },
-                { value: "normal", label: this.$t("normal") },
-                { value: "hard", label: this.$t("hard") }
+                { value: Difficulties.Easy, label: this.$t("easy") },
+                { value: Difficulties.Normal, label: this.$t("normal") },
+                { value: Difficulties.Hard, label: this.$t("hard") }
             ];
         },
         accidentalOptions() {

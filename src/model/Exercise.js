@@ -1,3 +1,12 @@
+import { Difficulties } from "./Options";
+
+export const Clefs = Object.freeze({
+    Treble: ("Clefs.Treble"),
+    Bass: ("Clefs.Bass"),
+    Alto: ("Clefs.Alto"),
+    Tenor: ("Clefs.Tenor"),
+});
+
 export default class Exercise {
     constructor(note, clef) {
         this.note = note;
@@ -20,97 +29,91 @@ export default class Exercise {
     }
     static minBassValue(difficulty) {
         switch (difficulty) {
-            case 'easy':
+            case Difficulties.Easy:
                 return 28;
-            case 'normal':
+            case Difficulties.Normal:
                 return 20;
-            case 'hard':
+            case Difficulties.Hard:
             default:
                 return 11;
         }
     }
     static maxBassValue(difficulty) {
         switch (difficulty) {
-            case 'easy':
+            case Difficulties.Easy:
                 return 40;
-            case 'normal':
+            case Difficulties.Normal:
                 return 40;
-            case 'hard':
+            case Difficulties.Hard:
             default:
                 return 49;
         }
     }
     static minTrebleValue(difficulty) {
         switch (difficulty) {
-            case 'easy':
+            case Difficulties.Easy:
                 return 40;
-            case 'normal':
+            case Difficulties.Normal:
                 return 40;
-            case 'hard':
+            case Difficulties.Hard:
             default:
                 return 32;
         }
     }
     static maxTrebleValue(difficulty) {
         switch (difficulty) {
-            case 'easy':
+            case Difficulties.Easy:
                 return 52;
-            case 'normal':
+            case Difficulties.Normal:
                 return 61;
-            case 'hard':
+            case Difficulties.Hard:
             default:
                 return 69;
         }
     }
     static minAltoValue(difficulty) {
         switch (difficulty) {
-            case 'easy':
+            case Difficulties.Easy:
                 return 35;
-            case 'normal':
+            case Difficulties.Normal:
                 return 28;
-            case 'hard':
+            case Difficulties.Hard:
             default:
                 return 21;
         }
     }
     static maxAltoValue(difficulty) {
         switch (difficulty) {
-            case 'easy':
+            case Difficulties.Easy:
                 return 47;
-            case 'normal':
+            case Difficulties.Normal:
                 return 52;
-            case 'hard':
+            case Difficulties.Hard:
             default:
                 return 59;
         }
     }
     static minTenorValue(difficulty) {
         switch (difficulty) {
-            case 'easy':
+            case Difficulties.Easy:
                 return 35;
-            case 'normal':
+            case Difficulties.Normal:
                 return 28;
-            case 'hard':
+            case Difficulties.Hard:
             default:
                 return 18;
         }
     }
     static maxTenorValue(difficulty) {
         switch (difficulty) {
-            case 'easy':
+            case Difficulties.Easy:
                 return 47;
-            case 'normal':
+            case Difficulties.Normal:
                 return 52;
-            case 'hard':
+            case Difficulties.Hard:
             default:
                 return 56;
         }
     }
 }
 
-export const Clefs = Object.freeze({
-    Treble: Symbol("Treble"),
-    Bass: Symbol("Bass"),
-    Alto: Symbol("Alto"),
-    Tenor: Symbol("Tenor"),
-});

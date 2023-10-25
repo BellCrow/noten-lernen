@@ -1,10 +1,24 @@
 import * as Lockr from "lockr";
 
+import {Clefs} from '../model/Exercise';//TODO: feels weird that the exercise class defines the clefs
+
+export const InputModes = Object.freeze({
+  Button : ("InputModes.Button"),
+  Keyboard : ("InputModes.Keyboard"),
+  Midi : ("InputModes.Midi")
+})
+
+export const Difficulties = Object.freeze({
+  Easy: ("Difficulties.Easy"),
+  Normal: ("Difficulties.Normal"),
+  Hard: ("Difficulties.Hard"),
+})
+
 export default {
-  inputMode: "button",
+  inputMode: InputModes.Button,
   gameLength: 60,
-  clef: ["treble"],
-  difficulty: "easy",
+  clef: [Clefs.Treble],
+  difficulty: Difficulties.Easy,
   accidentals: [],
   sound: false,
   vibration: true,
@@ -30,3 +44,4 @@ export default {
     Lockr.set("options", this);
   }
 };
+

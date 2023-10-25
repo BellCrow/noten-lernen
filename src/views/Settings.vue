@@ -9,7 +9,7 @@
         </div>
         <div class="setting">
             <SelectOptionMulti :label="$t('CLEF')" :items="clefOptions" v-bind:selectedItems="options.clef"
-                v-on:selectionChanged="options.clef = $event.sort()" :canHaveEmptySelection="false"/>
+                v-on:selectionChanged="options.clef = $event" :canHaveEmptySelection="false"/>
         </div>
         <div class="setting">
             <SelectOption :label="$t('DIFFICULTY')" :items="difficultyOptions" v-model="options.difficulty" />
@@ -37,7 +37,8 @@
 import SelectOption from "../components/SelectOption";
 import SelectOptionMulti from "../components/SelectOptionMulti";
 import SelectOptionDropdown from "../components/SelectOptionDropdown";
-import Options from '../model/Options';
+import Options,{InputModes, Difficulties} from '../model/Options';
+import { Clefs } from '../model/Exercise';
 
 export default {
     name: "Settings",
@@ -58,25 +59,25 @@ export default {
         },
         inputModeOptions() {
             return [
-                { value: "button", label: this.$t("buttons") },
-                { value: "keyboard", label: this.$t("piano") },
-                { value: "midi", label: 'MIDI' }
+                { value: InputModes.Button, label: this.$t("buttons") },
+                { value: InputModes.Keyboard, label: this.$t("piano") },
+                { value: InputModes.Midi, label: 'MIDI' }
             ];
         },
         clefOptions() {
             return [
-                { value: "treble", label: this.$t("trebleClef") },
-                { value: "bass", label: this.$t("bassClef") },
-                { value: "alto", label: this.$t("altoClef") },
-                { value: "tenor", label: this.$t("tenorClef") },
+                { value: Clefs.Treble, label: this.$t("trebleClef") },
+                { value: Clefs.Bass, label: this.$t("bassClef") },
+                { value: Clefs.Alto, label: this.$t("altoClef") },
+                { value: Clefs.Tenor, label: this.$t("tenorClef") },
                 // { value: "piano", label: this.$t("pianoClef") }
             ];
         },
         difficultyOptions() {
             return [
-                { value: "easy", label: this.$t("easy") },
-                { value: "normal", label: this.$t("normal") },
-                { value: "hard", label: this.$t("hard") }
+                { value: Difficulties.Easy, label: this.$t("easy") },
+                { value: Difficulties.Normal, label: this.$t("normal") },
+                { value: Difficulties.Hard, label: this.$t("hard") }
             ];
         },
         accidentalOptions() {

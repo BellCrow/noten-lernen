@@ -1,7 +1,7 @@
 <template>
   <div class="button-input">
     <div v-for="value in 12" :key="value-1" class="button-container" :style="gridParams[value-1]">
-      <button @click="solve(value + 3)">{{$t(noteNames[value-1])}}</button>
+      <button @click="solve(value + 3)">{{noteNames[value-1]}}</button>
     </div>
   </div>
 </template>
@@ -32,7 +32,7 @@ export default {
         {
           return this.$t(Utils.toLocalizationTag(noteGroup[0]));
         }
-        return `${this.$t(Utils.toLocalizationTag(noteGroup[0]))}/${this.$t(Utils.toLocalizationTag(noteGroup[1]))}`;
+        return this.$t(Utils.toLocalizationTag(noteGroup[0])) + "/" + this.$t(Utils.toLocalizationTag(noteGroup[1]));
       });
     }
   },

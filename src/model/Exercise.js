@@ -109,8 +109,8 @@ export default class Exercise {
 }
 
 export const Clefs = Object.freeze({
-    Treble: Symbol("Treble"),
-    Bass: Symbol("Bass"),
-    Alto: Symbol("Alto"),
-    Tenor: Symbol("Tenor"),
+    Treble: ("Clefs.Treble"),
+    Bass: ("Clefs.Bass"),
+    Alto: ("Clefs.Alto"),
+    Tenor: ("Clefs.Tenor"),
 });

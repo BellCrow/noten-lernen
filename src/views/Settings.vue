@@ -9,7 +9,7 @@
         </div>
         <div class="setting">
             <SelectOptionMulti :label="$t('CLEF')" :items="clefOptions" v-bind:selectedItems="options.clef"
-                v-on:selectionChanged="options.clef = $event.sort()" :canHaveEmptySelection="false"/>
+                v-on:selectionChanged="options.clef = $event" :canHaveEmptySelection="false"/>
         </div>
         <div class="setting">
             <SelectOption :label="$t('DIFFICULTY')" :items="difficultyOptions" v-model="options.difficulty" />
@@ -38,6 +38,7 @@ import SelectOption from "../components/SelectOption";
 import SelectOptionMulti from "../components/SelectOptionMulti";
 import SelectOptionDropdown from "../components/SelectOptionDropdown";
 import Options,{InputModes} from '../model/Options';
+import { Clefs } from '../model/Exercise';
 
 export default {
     name: "Settings",
@@ -65,10 +66,10 @@ export default {
         },
         clefOptions() {
             return [
-                { value: "treble", label: this.$t("trebleClef") },
-                { value: "bass", label: this.$t("bassClef") },
-                { value: "alto", label: this.$t("altoClef") },
-                { value: "tenor", label: this.$t("tenorClef") },
+                { value: Clefs.Treble, label: this.$t("trebleClef") },
+                { value: Clefs.Bass, label: this.$t("bassClef") },
+                { value: Clefs.Alto, label: this.$t("altoClef") },
+                { value: Clefs.Tenor, label: this.$t("tenorClef") },
                 // { value: "piano", label: this.$t("pianoClef") }
             ];
         },

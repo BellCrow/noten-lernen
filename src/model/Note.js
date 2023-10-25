@@ -145,18 +145,18 @@ export default class Note {
 
 
 export const Notes = Object.freeze({
-    C: Symbol("C"),
-    D: Symbol("D"),
-    E: Symbol("E"),
-    F: Symbol("F"),
-    G: Symbol("G"),
-    A: Symbol("A"),
-    B: Symbol("B"),
+    C: ("Notes.C"),
+    D: ("Notes.D"),
+    E: ("Notes.E"),
+    F: ("Notes.F"),
+    G: ("Notes.G"),
+    A: ("Notes.A"),
+    B: ("Notes.B"),
 });
 
 export const Accidentals = Object.freeze({
-    Flat: Symbol("Flat"),
-    None: Symbol("None"),
-    Sharp: Symbol("Sharp"),
-    Natural: Symbol("Natural")
+    Flat: ("Accidentals.Flat"),
+    None: ("Accidentals.None"),
+    Sharp: ("Accidentals.Sharp"),
+    Natural: ("Accidentals.Natural")
 });

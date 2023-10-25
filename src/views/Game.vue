@@ -160,42 +160,22 @@ export default {
     },
     generateExercise() {
       var clef = _.sample(this.options.clef);
-      var clefEnumValue = Clefs.Alto;
-      switch(clef)
-      {
-        case "treble":
-          clefEnumValue = Clefs.Treble;
-        break;
-
-        case "bass":
-          clefEnumValue = Clefs.Bass;
-          break;
-
-        case "alto":
-          clefEnumValue = Clefs.Alto;
-          break;
-
-        case "tenor":
-          clefEnumValue = Clefs.Tenor;
-          break;
-      }
-      const exercise = new Exercise(this.getRandomNoteForClef(clef), clefEnumValue);
+      const exercise = new Exercise(this.getRandomNoteForClef(clef), clef);
       return exercise;
     },
     getRandomNoteForClef(clef) {
-      //TODO: move this into the exercise classes somehow. 
-      //return new Note(Notes.C,5,Accidentals.None);
+      //TODO: move this into the exercise classes somehow.
       switch (clef) {
-        case 'treble':
+        case Clefs.Treble:
           var legalnotesForClef = this.noteRangeForRound.filter(note => Exercise.minTrebleValue(this.options.difficulty) <= note.value && Exercise.maxTrebleValue(this.options.difficulty) >= note.value);
           return _.sample(legalnotesForClef);
-        case 'bass':
+        case Clefs.Bass:
           var legalnotesForClef = this.noteRangeForRound.filter(note => Exercise.minBassValue(this.options.difficulty) <= note.value && Exercise.maxBassValue(this.options.difficulty) >= note.value);
           return _.sample(legalnotesForClef);
-        case 'alto':
+        case Clefs.Alto:
           var legalnotesForClef = this.noteRangeForRound.filter(note => Exercise.minAltoValue(this.options.difficulty) <= note.value && Exercise.maxAltoValue(this.options.difficulty) >= note.value);
           return _.sample(legalnotesForClef);
-        case 'tenor':
+        case Clefs.Tenor:
           var legalnotesForClef = this.noteRangeForRound.filter(note => Exercise.minTenorValue(this.options.difficulty) <= note.value && Exercise.maxTenorValue(this.options.difficulty) >= note.value);
           return _.sample(legalnotesForClef);
       }

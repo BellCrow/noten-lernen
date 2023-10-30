@@ -1,6 +1,6 @@
 import * as Lockr from "lockr";
 
-import {Clefs} from '../model/Exercise';//TODO: feels weird that the exercise class defines the clefs
+import {Clefs} from '../model/ExerciseClasses/Exercise';//TODO: feels weird that the exercise class defines the clefs
 
 export const InputModes = Object.freeze({
   Button : ("InputModes.Button"),

@@ -38,7 +38,8 @@ import SelectOption from "../components/SelectOption";
 import SelectOptionMulti from "../components/SelectOptionMulti";
 import SelectOptionDropdown from "../components/SelectOptionDropdown";
 import Options,{InputModes, Difficulties} from '../model/Options';
-import { Clefs } from '../model/Exercise';
+import { Clefs } from '../model/ExerciseClasses/Exercise';
+import {Accidentals } from '../model/Note';
 
 export default {
     name: "Settings",
@@ -82,8 +83,8 @@ export default {
         },
         accidentalOptions() {
             return [
-                { value: "flat", label: this.$t("flat") },
-                { value: "sharp", label: this.$t("sharp") },
+                { value: Accidentals.Flat, label: this.$t("flat") },
+                { value: Accidentals.Sharp, label: this.$t("sharp") },
             ];
         },
         onOffOptions() {

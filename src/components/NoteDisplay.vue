@@ -7,7 +7,10 @@
 <script>
 
 
-
+/* TODO:
+The component cannot deal with having no exercise to show. 
+It should probably show some default value like an empty treble clef or something similar. 
+ */
 import Note, {Accidentals} from '../model/Note';
 import abcjs from 'abcjs';
 
@@ -26,8 +29,8 @@ export default {
        interactive abc editor if you want to play around 
        https://paulrosen.github.io/abcjs/interactive/interactive-editor.html#available-methods
       */
-      
-      
+
+     
       /*
        we are converting from our internal note representation to the ABC notation.
        the abc notation represents the middle C as just "C" which coresponds in our system

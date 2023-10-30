@@ -30,8 +30,10 @@ import MousetrapInput from '../components/MousetrapInput';
 
 import Options, { InputModes } from '../model/Options';
 import Statistics from '../model/Statistics';
-import Note, { Accidentals,Notes } from '../model/Note';
-import Exercise, { Clefs } from '../model/Exercise';
+
+import Exercise , { Clefs } from '../model/ExerciseClasses/Exercise';
+import Note, { Accidentals, Notes } from '../model/Note';
+import RandomTeacher from '../model/ExerciseClasses/RandomTeacher'
 
 
 import * as _ from 'lodash';
@@ -50,7 +52,7 @@ export default {
   data() {
     return {
       options: Options,
-      currentExercise: new Exercise(new Note(Notes.A,1,Accidentals.None), Clefs.Treble),
+      currentExercise: new Exercise(new Note(Notes.A), Clefs.Alto),
       numCorrect: 0,
       numWrong: 0,
       timeLeft: 0,
@@ -59,6 +61,7 @@ export default {
       feedback: 'none',
       sample: null,
       noteRangeForRound: null,
+      teacher:  null,
     }
   },
   computed: {
@@ -92,22 +95,6 @@ export default {
     }
   },
   methods: {
-    generateNoteRangeForExcercise(options) {
-      let localOptions = options;
-      let fullRange = Note.PianoNoteRange;
-      let accidentalsThatCanOccur = [Accidentals.None];
-      //TODO: change the settings class so that it uses the model enums
-      if (localOptions.accidentals.some(acc => acc == "flat")) {
-        accidentalsThatCanOccur.push(Accidentals.Flat);
-      }
-      if (localOptions.accidentals.some(acc => acc == "sharp")) {
-        accidentalsThatCanOccur.push(Accidentals.Sharp);
-      }
-
-      //filter out all notes with accidentals that are disabled in the options
-      let filteredRange = fullRange.filter(note => accidentalsThatCanOccur.includes(note.accidental))
-      return filteredRange;
-    },
     isButtonInputSelected()
     {
       return this.options.inputMode === InputModes.Button;
@@ -122,7 +109,7 @@ export default {
     },
 
     startGame() {
-      this.noteRangeForRound = this.generateNoteRangeForExcercise(this.options)
+      this.teacher = new RandomTeacher(this.options.difficulty, this.options.clef, this.options.accidentals.concat([Accidentals.None]));
       this.numCorrect = 0;
       this.numWrong = 0;
       this.timeLeft = this.options.gameLength;
@@ -155,30 +142,7 @@ export default {
       this.$emit('gameEnded', null);
     },
     generateNewExercise() {
-      //TODO: put this in the model layer during the refactoring.
-      this.currentExercise = this.generateExercise();
-    },
-    generateExercise() {
-      var clef = _.sample(this.options.clef);
-      const exercise = new Exercise(this.getRandomNoteForClef(clef), clef);
-      return exercise;
-    },
-    getRandomNoteForClef(clef) {
-      //TODO: move this into the exercise classes somehow.
-      switch (clef) {
-        case Clefs.Treble:
-          var legalnotesForClef = this.noteRangeForRound.filter(note => Exercise.minTrebleValue(this.options.difficulty) <= note.value && Exercise.maxTrebleValue(this.options.difficulty) >= note.value);
-          return _.sample(legalnotesForClef);
-        case Clefs.Bass:
-          var legalnotesForClef = this.noteRangeForRound.filter(note => Exercise.minBassValue(this.options.difficulty) <= note.value && Exercise.maxBassValue(this.options.difficulty) >= note.value);
-          return _.sample(legalnotesForClef);
-        case Clefs.Alto:
-          var legalnotesForClef = this.noteRangeForRound.filter(note => Exercise.minAltoValue(this.options.difficulty) <= note.value && Exercise.maxAltoValue(this.options.difficulty) >= note.value);
-          return _.sample(legalnotesForClef);
-        case Clefs.Tenor:
-          var legalnotesForClef = this.noteRangeForRound.filter(note => Exercise.minTenorValue(this.options.difficulty) <= note.value && Exercise.maxTenorValue(this.options.difficulty) >= note.value);
-          return _.sample(legalnotesForClef);
-      }
+      this.currentExercise = this.teacher.nextExercise();
     },
     checkAnswer(notes, checkOctave = false) {
       //this.playNote(Utils.getNearestNoteOfValue(value, this.currentExercise.value));
